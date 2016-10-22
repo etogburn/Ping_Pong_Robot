@@ -16,6 +16,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ping_Pong_Robot.ino" />
+    <None Include="Buttons.ino" />
+    <None Include="Display.ino" />
+    <None Include="Initialize.ino" />
+    <None Include="IR_Recieve.ino" />
+    <None Include="Program.ino" />
   </ItemGroup>
- 
+  <ItemGroup>
+    <ClInclude Include="__vm\.Ping_Pong_Robot.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tellymate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shots.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Tellymate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
