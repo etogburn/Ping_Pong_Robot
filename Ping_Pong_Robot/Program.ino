@@ -27,9 +27,16 @@ void Program()
 if(now-lastfeedprog > delaytime) {
   if(vertstate == shottype[setspintype][setspeed][setspin][var] && horizstate == currentsequence[q])
   {
-	  if (ballFed = true) 
-	  {
-
+	  if (digitalRead(feedSensorPin) == LOW) {
+		  q++;
+		  counter++;
+		  digitalWrite(feedpin, LOW);
+		  lastfeedprog = millis();
+	  }
+	  else {
+		  digitalWrite(feedpin, HIGH);
+		  topmotor.writeMicroseconds(topspeed);
+		  bottommotor.writeMicroseconds(bottomspeed);
 	  }
 
   }

@@ -71,17 +71,17 @@ Tellymate::Tellymate( long serialRate )
 
 void Tellymate::init()
 {
-  Serial.begin( _serialRate );
+  Serial3.begin( _serialRate );
   delay(50);
-  Serial.write( CHAR_ESC "E");
+  Serial3.write( CHAR_ESC "E");
   _xloc = 0;
   _yloc = 0;
   cursoroff();
   //diagnostic();
   //fontdoublewidth( 18 );
   //cursorto( 0, 18 );
-  //Serial.println( "Tellymate lib" );
-  //Serial.print( "ver 0.01" );
+  //Serial3.println( "Tellymate lib" );
+  //Serial3.print( "ver 0.01" );
   //delay( 4000 );
   clearscreen();
 }
@@ -89,14 +89,14 @@ void Tellymate::init()
 
 void Tellymate::diagnostic()
 {
-  Serial.print( CHAR_ESC "Q");
+  Serial3.print( CHAR_ESC "Q");
   delay( 20 ); // tellymate users guide recommends at least 2ms delay
 }
 
 
 void Tellymate::clearscreen()
 { // <ESC>E
-  Serial.print( CHAR_ESC "E" ); 
+  Serial3.print( CHAR_ESC "E" ); 
   _xloc = 0;
   _yloc = 0;
 }
@@ -104,21 +104,21 @@ void Tellymate::clearscreen()
 
 void Tellymate::cursoron()
 { // <ESC>e 
-  Serial.print( CHAR_ESC "e" );
+  Serial3.print( CHAR_ESC "e" );
 }
 
 
 void Tellymate::cursoroff()
 { // <ESC>f 
-  Serial.print( CHAR_ESC "f" );
+  Serial3.print( CHAR_ESC "f" );
 }
 
 
 void Tellymate::cursorto( uint8_t xloc , uint8_t yloc )
 { // <ESC>Yrc
-  Serial.write( CHAR_ESC "Y" ) ;
-  Serial.write((unsigned char)(32 + yloc)) ;
-  Serial.write((unsigned char)(32 + xloc)) ;
+  Serial3.write( CHAR_ESC "Y" ) ;
+  Serial3.write((unsigned char)(32 + yloc)) ;
+  Serial3.write((unsigned char)(32 + xloc)) ;
   _xloc = xloc;
   _yloc = yloc;
 }
@@ -166,7 +166,7 @@ void Tellymate::cursorleft( int moves )
 
 void Tellymate::cursorhome()
 {
-  Serial.write( CHAR_ESC "H" );
+  Serial3.write( CHAR_ESC "H" );
   _xloc = 0;
   _yloc = 0;
 }
@@ -174,17 +174,17 @@ void Tellymate::cursorhome()
 
 void Tellymate::newline()
 {
-  Serial.write( CHAR_CR CHAR_LF );
+  Serial3.write( CHAR_CR CHAR_LF );
 }
 
 
 void Tellymate::blockcursor( bool value )
 {
   if( value ){
-    Serial.write( CHAR_ESC "x4" );
+    Serial3.write( CHAR_ESC "x4" );
   }
   else{
-    Serial.write( CHAR_ESC "y4" );
+    Serial3.write( CHAR_ESC "y4" );
   }
 }
 
@@ -192,72 +192,72 @@ void Tellymate::blockcursor( bool value )
 void Tellymate::lineoverflow( bool value )
 {
   if( value ){
-    Serial.write( CHAR_ESC "v" );
+    Serial3.write( CHAR_ESC "v" );
   }
   else{
-    Serial.write( CHAR_ESC "w" );
+    Serial3.write( CHAR_ESC "w" );
   }
 }
 
 
 void Tellymate::printchar( unsigned char char2print )
 {
-  Serial.write( CHAR_DLE );
-  Serial.write( char2print );
+  Serial3.write( CHAR_DLE );
+  Serial3.write( char2print );
 }
 
 
 void Tellymate::pootchar( int xloc, int yloc, unsigned char char2print )
 {
   cursorto( xloc, yloc );
-  Serial.write( CHAR_DLE );
-  Serial.write( char2print );
+  Serial3.write( CHAR_DLE );
+  Serial3.write( char2print );
 }
 
 
 void Tellymate::print( char pstring[])
 {
-  Serial.write( pstring );
+  Serial3.write( pstring );
 }
 
 void Tellymate::print( int var)
 {
-  Serial.write( var );
+  Serial3.write( var );
 }
 
 void Tellymate::println( char pstring[])
 {
-  Serial.println( pstring );
+  Serial3.println( pstring );
 }
 
 void Tellymate::printtall( char pstring[])
 {
     cursorto( _xloc, _yloc );
-    Serial.write( CHAR_ESC "_2");
-    Serial.write(pstring);
+    Serial3.write( CHAR_ESC "_2");
+    Serial3.write(pstring);
     cursorto( _xloc, _yloc +1 );
-    Serial.write( CHAR_ESC "_3");
-    Serial.write(pstring);
+    Serial3.write( CHAR_ESC "_3");
+    Serial3.write(pstring);
 }
 
 void Tellymate::printlarge( char pstring[])
 {
     cursorto( _xloc, _yloc );
-    Serial.write( CHAR_ESC "_4");
-    Serial.write(pstring);
+    Serial3.write( CHAR_ESC "_4");
+    Serial3.write(pstring);
     cursorto( _xloc, _yloc +1 );
-    Serial.write( CHAR_ESC "_5");
-    Serial.write(pstring);
+    Serial3.write( CHAR_ESC "_5");
+    Serial3.write(pstring);
 }
 
 void Tellymate::printlarge( int var)
 {
     cursorto( _xloc, _yloc );
-    Serial.write( CHAR_ESC "_4");
-    Serial.print(var);
+    Serial3.write( CHAR_ESC "_4");
+    Serial3.print(var);
     cursorto( _xloc, _yloc +1 );
-    Serial.write( CHAR_ESC "_5");
-    Serial.print(var);
+    Serial3.write( CHAR_ESC "_5");
+    Serial3.print(var);
 }
 
 void Tellymate::fontdoubleheight( int row )
@@ -265,16 +265,16 @@ void Tellymate::fontdoubleheight( int row )
   if( row == -1 ){
     for( int i = 0; i < 25; i += 2 ){
       cursorto( 0, i );
-      Serial.write( CHAR_ESC "_2");
+      Serial3.write( CHAR_ESC "_2");
       cursorto( 0, i+1 );
-      Serial.write( CHAR_ESC "_3");
+      Serial3.write( CHAR_ESC "_3");
     }
   }
   else{
     cursorto( 0, row );
-    Serial.write( CHAR_ESC "_2");
+    Serial3.write( CHAR_ESC "_2");
     cursorto( 0, row+1 );
-    Serial.write( CHAR_ESC "_3");
+    Serial3.write( CHAR_ESC "_3");
   }
 }
 
@@ -284,12 +284,12 @@ void Tellymate::fontdoublewidth( int row )
   if( row == -1 ){
     for( int i = 0; i < 25; i++ ){
       cursorto( 0, i );
-      Serial.write( CHAR_ESC "_1");
+      Serial3.write( CHAR_ESC "_1");
     }
   }
   else{
     cursorto( 0, row );
-    Serial.write( CHAR_ESC "_1");
+    Serial3.write( CHAR_ESC "_1");
   }
 }
 
@@ -299,16 +299,16 @@ void Tellymate::fontlarge( int row )
   if( row == -1 ){
     for( int i = 0; i < 25; i += 2 ){
       cursorto( 0, i );
-      Serial.write( CHAR_ESC "_4");
+      Serial3.write( CHAR_ESC "_4");
       cursorto( 0, i+1 );
-      Serial.write( CHAR_ESC "_5");
+      Serial3.write( CHAR_ESC "_5");
     }
   }
   else{
     cursorto( 0, row );
-    Serial.write( CHAR_ESC "_4");
+    Serial3.write( CHAR_ESC "_4");
     cursorto( 0, row+1 );
-    Serial.write( CHAR_ESC "_5");
+    Serial3.write( CHAR_ESC "_5");
   }
 }
 
@@ -320,12 +320,12 @@ void Tellymate::fontnormal( int row )
   if( row == -1 ){
     for( int i = 0; i < 25; i++ ){
       cursorto( 0, i );
-      Serial.write( CHAR_ESC "_0");
+      Serial3.write( CHAR_ESC "_0");
     }
   }
   else{
     cursorto( 0, row );
-    Serial.write( CHAR_ESC "_0");
+    Serial3.write( CHAR_ESC "_0");
   }
 }
 
