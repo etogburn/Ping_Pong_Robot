@@ -67,7 +67,7 @@ void loop()
 
 void ballFeed()
 {
-  ballFed = true;
+  ballFed++;
 
 }
 

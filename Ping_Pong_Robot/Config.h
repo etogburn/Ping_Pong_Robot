@@ -12,8 +12,8 @@ int motortop = 2000;
 #define movementIncrement 2
 //**********************************************************************************************************************
 
-volatile boolean ballFed = false;
-
+volatile int ballFed = 0;
+int debugcounter = 0;
 unsigned long delaytime = 0;
 unsigned long oneminute = 60000;
 

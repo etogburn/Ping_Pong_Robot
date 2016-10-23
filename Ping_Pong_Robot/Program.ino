@@ -27,11 +27,22 @@ void Program()
 if(now-lastfeedprog > delaytime) {
   if(vertstate == shottype[setspintype][setspeed][setspin][var] && horizstate == currentsequence[q])
   {
-	  if (digitalRead(feedSensorPin) == LOW) {
+	  if (lastShot || q)
+	  {
+		  ballFed = 0;
+		  digitalWrite(feedpin, HIGH);
+		  lastShot = q;
+	  }
+
+	  debugcounter++;
+
+	  if (ballFed > 0)
+	  {
 		  q++;
 		  counter++;
 		  digitalWrite(feedpin, LOW);
 		  lastfeedprog = millis();
+		  debugcounter = 0;
 	  }
 	  else {
 		  digitalWrite(feedpin, HIGH);

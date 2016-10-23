@@ -17,7 +17,7 @@ void Initialize()
 
   pinMode(feedSensorPin, INPUT);
   digitalWrite(feedSensorPin, HIGH);
-  attachInterrupt(4, ballFeed, RISING);
+  attachInterrupt(4, ballFeed, FALLING);
 
   //delay(2000);
   tellymate.cursorto(6,12);
