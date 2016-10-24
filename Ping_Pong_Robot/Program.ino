@@ -40,6 +40,7 @@ if(now-lastfeedprog > delaytime) {
 	  {
 		  q++;
 		  counter++;
+		  ballFed = 0;
 		  digitalWrite(feedpin, LOW);
 		  lastfeedprog = millis();
 		  debugcounter = 0;
