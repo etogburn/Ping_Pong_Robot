@@ -48,6 +48,11 @@ OF SUCH DAMAGE.
 #define MAX_X 38
 #define MAX_Y 25
 
+#ifdef TellymateSerialPort
+	#define SerialPortUsed TellymateSerialPort
+#else
+	#define SerialPortUsed 0
+#endif
 
 //#include "WProgram.h"
 #include <inttypes.h>
