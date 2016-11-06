@@ -12,8 +12,10 @@ int motortop = 2000;
 #define movementIncrement 2
 //**********************************************************************************************************************
 
-volatile int ballFed = 0;
-int debugcounter = 0;
+#define TellymateSerialPort 3
+
+volatile boolean ballFed = false;
+
 unsigned long delaytime = 0;
 unsigned long oneminute = 60000;
 
