@@ -21,9 +21,10 @@ sleep = motors stop
 4 = increase topmotor
 5 = decrease topmotor
 */
+#include "IRremote.h"
 #include "Arduino.h"
-#include <IRremote.h>
-#include <Servo.h>
+#include "IRremote.h"
+#include "Servo.h"
 
 #include "Config.h"
 #include "Programs.h"
