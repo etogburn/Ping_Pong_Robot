@@ -41,6 +41,16 @@ Servo bottommotor;
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
+unsigned long now = 0;
+unsigned long lastselecshot = 0;
+unsigned long lastprog = 0;
+unsigned long lastfeed = 0;
+unsigned long lastagitate = 0;
+unsigned long lasthsweep = 0;
+unsigned long lasthrand = 0;
+unsigned long lastfeedprog = 0;
+unsigned long manualdisplay = 0;
+
 void setup()
 {
   Initialize();

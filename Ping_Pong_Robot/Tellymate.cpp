@@ -239,9 +239,9 @@ void Tellymate::print( char pstring[])
   SerialPort.write( pstring );
 }
 
-void Tellymate::print( int var)
+void Tellymate::print( int verticalArrayLoc)
 {
-  SerialPort.write( var );
+  SerialPort.write( verticalArrayLoc );
 }
 
 void Tellymate::println( char pstring[])
@@ -269,14 +269,14 @@ void Tellymate::printlarge( char pstring[])
     SerialPort.write(pstring);
 }
 
-void Tellymate::printlarge( int var)
+void Tellymate::printlarge( int verticalArrayLoc)
 {
     cursorto( _xloc, _yloc );
     SerialPort.write( CHAR_ESC "_4");
-    SerialPort.print(var);
+    SerialPort.print(verticalArrayLoc);
     cursorto( _xloc, _yloc +1 );
     SerialPort.write( CHAR_ESC "_5");
-    SerialPort.print(var);
+    SerialPort.print(verticalArrayLoc);
 }
 
 void Tellymate::fontdoubleheight( int row )

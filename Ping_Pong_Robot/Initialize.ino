@@ -7,13 +7,13 @@ void Initialize()
   tellymate.cursorto(2,7);
   tellymate.printlarge("Ping Pong Robot");
   irrecv.enableIRIn(); // Start the receiver
-  vertical.attach(vpin);
-  horizontal.attach(hpin);
-  topmotor.attach(tmpin); //both motors are on timer 2
-  bottommotor.attach(bmpin);
+  vertical.attach(verticalPin);
+  horizontal.attach(horizontalPin);
+  topmotor.attach(topMotorPin); //both motors are on timer 2
+  bottommotor.attach(bottomMotorPin);
 
-  pinMode(feedpin, OUTPUT);
-  digitalWrite(feedpin, LOW);
+  pinMode(feedMotorPin, OUTPUT);
+  digitalWrite(feedMotorPin, LOW);
 
   pinMode(feedSensorPin, INPUT);
   digitalWrite(feedSensorPin, HIGH);

@@ -46,12 +46,12 @@ void Display()
         tellymate.cursorto(26,17);
         tellymate.print("----------");
         tellymate.cursorto(6,19);
-        tellymate.printlarge(counter);
+        tellymate.printlarge(numOfBallsShot);
       }
       else
       {
         tellymate.cursorto(6,19);
-        tellymate.printlarge(counter);
+        tellymate.printlarge(numOfBallsShot);
         if(locationselect ==0)
         {
           tellymate.cursorto(26,17);
@@ -85,14 +85,14 @@ void Display()
         tellymate.cursorto(12,15);
         tellymate.printlarge(" ");
       }
-      if(numofballs<10 && numofballs != 0)
+      if(numOfBallsToShoot<10 && numOfBallsToShoot != 0)
       {
         tellymate.cursorto(6,19);
-        tellymate.printlarge(numofballs);
+        tellymate.printlarge(numOfBallsToShoot);
         tellymate.cursorto(7,19);
         tellymate.printlarge("  ");
       }
-      else if(numofballs == 0)
+      else if(numOfBallsToShoot == 0)
       {
         tellymate.cursorto(6,19);
         tellymate.printlarge("All");
@@ -100,7 +100,7 @@ void Display()
       else
       {
         tellymate.cursorto(6,19);
-        tellymate.printlarge(numofballs);
+        tellymate.printlarge(numOfBallsToShoot);
       }
 
       tellymate.cursorto(16,5);
@@ -239,7 +239,7 @@ void ProgramDisplay()
     tellymate.cursorto(12,15);
     tellymate.printlarge(" ");
   }
-  if(numofballs == 0)
+  if(numOfBallsToShoot == 0)
   {
     tellymate.cursorto(9,19);
     tellymate.printlarge("/");
@@ -251,7 +251,7 @@ void ProgramDisplay()
     tellymate.cursorto(8,19);
     tellymate.printlarge("/");
     tellymate.cursorto(9,19);
-    tellymate.printlarge(numofballs);
+    tellymate.printlarge(numOfBallsToShoot);
   }
 }
 

@@ -1,40 +1,40 @@
 void Program()
 {
-  topspeed = shottype[setspintype][setspeed][setspin][tmar];
-  bottomspeed = shottype[setspintype][setspeed][setspin][bmar];
+  topspeed = shottype[setspintype][setspeed][setspin][topMotorArrayLoc];
+  bottomspeed = shottype[setspintype][setspeed][setspin][botMotorArrayLoc];
   if(now - lastprog > movementTimer)
   {
     lastprog = now;
-    if(horizstate < currentsequence[q])
+    if(horizstate < currentsequence[currentShot])
     {
       horizstate += movementIncrement;
     }
-    else if(horizstate > currentsequence[q])
+    else if(horizstate > currentsequence[currentShot])
     {
       horizstate -= movementIncrement;
     }
 
-    if(vertstate < shottype[setspintype][setspeed][setspin][var])
+    if(vertstate < shottype[setspintype][setspeed][setspin][verticalArrayLoc])
     {
       vertstate += movementIncrement;
     }
-    else if(vertstate > shottype[setspintype][setspeed][setspin][var])
+    else if(vertstate > shottype[setspintype][setspeed][setspin][verticalArrayLoc])
     {
       vertstate -= movementIncrement;
     }
   }
   
 if(now-lastfeedprog > delaytime) {
-  if(vertstate == shottype[setspintype][setspeed][setspin][var] && horizstate == currentsequence[q])
+  if(vertstate == shottype[setspintype][setspeed][setspin][verticalArrayLoc] && horizstate == currentsequence[currentShot])
   {
 	  if (digitalRead(feedSensorPin) == LOW) {
-		  q++;
-		  counter++;
-		  digitalWrite(feedpin, LOW);
+		  currentShot++;
+		  numOfBallsShot++;
+		  digitalWrite(feedMotorPin, LOW);
 		  lastfeedprog = millis();
 	  }
 	  else {
-		  digitalWrite(feedpin, HIGH);
+		  digitalWrite(feedMotorPin, HIGH);
 		  topmotor.writeMicroseconds(topspeed);
 		  bottommotor.writeMicroseconds(bottomspeed);
 	  }
@@ -47,30 +47,30 @@ if(now-lastfeedprog > delaytime) {
 
   if(setsequence == numofsequences)
    {
-     if(q == 0) currentsequence[persequence-1] = places[random(0,numoflocations)];
-     else currentsequence[q-1] = places[random(0,numoflocations)];
+     if(currentShot == 0) currentsequence[persequence-1] = places[random(0,numoflocations)];
+     else currentsequence[currentShot-1] = places[random(0,numoflocations)];
    }
-  if(currentsequence[q] == END || q > persequence-1) {
-    q = 0; //resets the current sequence
+  if(currentsequence[currentShot] == END || currentShot > persequence-1) {
+    currentShot = 0; //resets the current sequence
   }
-  if(numofballs !=0) //null if counter is 0. plays till player stops
+  if(numOfBallsToShoot !=0) //null if counter is 0. plays till player stops
   {
-    if(numofballs <= counter) //stops the program when counter is reached
+    if(numOfBallsToShoot <= numOfBallsShot) //stops the program when counter is reached
     {
       beginprogram = false;
       ProgramDisplay();
-      counter = 0;
-      digitalWrite(feedpin, LOW);
+      numOfBallsShot = 0;
+      digitalWrite(feedMotorPin, LOW);
     }
   }
 }
 //=============================================================================================================================================
 void ProgramReady()
 {
-  if(topspeed > shottype[setspintype][setspeed][setspin][tmar]) topspeed -=5;
-  else if(topspeed < shottype[setspintype][setspeed][setspin][tmar]) topspeed +=5;
-  if(bottomspeed > shottype[setspintype][setspeed][setspin][bmar]) bottomspeed -=5;
-  else if(bottomspeed < shottype[setspintype][setspeed][setspin][bmar]) bottomspeed +=5;
+  if(topspeed > shottype[setspintype][setspeed][setspin][topMotorArrayLoc]) topspeed -=5;
+  else if(topspeed < shottype[setspintype][setspeed][setspin][topMotorArrayLoc]) topspeed +=5;
+  if(bottomspeed > shottype[setspintype][setspeed][setspin][botMotorArrayLoc]) bottomspeed -=5;
+  else if(bottomspeed < shottype[setspintype][setspeed][setspin][botMotorArrayLoc]) bottomspeed +=5;
   topmotor.writeMicroseconds(topspeed);
   bottommotor.writeMicroseconds(bottomspeed);
   if(horizstate != currentsequence[0])
@@ -79,10 +79,10 @@ void ProgramReady()
     else if(horizstate <currentsequence[0]) horizstate +=2;
     horizontal.write(horizstate);
   }
-  if(vertstate != shottype[setspintype][setspeed][setspin][var])
+  if(vertstate != shottype[setspintype][setspeed][setspin][verticalArrayLoc])
   {
-    if(vertstate > shottype[setspintype][setspeed][setspin][var]) vertstate -=2;
-    else if(vertstate <shottype[setspintype][setspeed][setspin][var]) vertstate +=2;
+    if(vertstate > shottype[setspintype][setspeed][setspin][verticalArrayLoc]) vertstate -=2;
+    else if(vertstate <shottype[setspintype][setspeed][setspin][verticalArrayLoc]) vertstate +=2;
     vertical.write(vertstate);
   }
   tellymate.pootchar(int(map(horizstate,hrange[0],hrange[1],6,29)),12,167);
@@ -125,8 +125,8 @@ void PrepareProgram()
     delay(25);
   }
   delay(100);
-  topspeed = shottype[setspintype][setspeed][setspin][tmar];
-  bottomspeed = shottype[setspintype][setspeed][setspin][bmar];
+  topspeed = shottype[setspintype][setspeed][setspin][topMotorArrayLoc];
+  bottomspeed = shottype[setspintype][setspeed][setspin][botMotorArrayLoc];
   topmotor.writeMicroseconds(topspeed);
   bottommotor.writeMicroseconds(bottomspeed);
 }

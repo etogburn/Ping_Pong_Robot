@@ -44,7 +44,7 @@ void ChPlus() //================================================================
     }
     else if(locationselect == selfreq && freq < freqrange[1]) freq+=5;
     else if(locationselect == selsequence && setsequence < numofsequences) setsequence++;
-    else if(locationselect == selnumofballs && numofballs<99) numofballs++;
+    else if(locationselect == selnumofballs && numOfBallsToShoot<99) numOfBallsToShoot++;
   }
   delay(50);
 }
@@ -61,7 +61,7 @@ void ChMinus() //===============================================================
     }
     else if(locationselect == selsequence && setsequence > 0) setsequence--;
     else if(locationselect == selfreq && freq > freqrange[0]) freq-=5;
-    else if(locationselect == selnumofballs && numofballs > 0) numofballs--;
+    else if(locationselect == selnumofballs && numOfBallsToShoot > 0) numOfBallsToShoot--;
   }
   delay(50);
 }
@@ -106,7 +106,7 @@ void OkButton() //==============================================================
     if(beginprogram)
     {
       beginprogram = false;
-      digitalWrite(feedpin, LOW);
+      digitalWrite(feedMotorPin, LOW);
       ProgramDisplay();
     }
     else
@@ -125,10 +125,10 @@ void OkButton() //==============================================================
           currentsequence[a] = END;
         }
         progmenu = true;
-        q = 0;
+        currentShot = 0;
         lastShot = -1;
         locationselect = 0;
-        counter =0;
+        numOfBallsShot =0;
         ProgMenuDisplay();
         topspeed = 1500;
         bottomspeed = 1500;

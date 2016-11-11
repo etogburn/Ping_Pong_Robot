@@ -1,9 +1,9 @@
 
 //array indices for each location
-#define var 0 //vertical
-#define tmar 1 //top motor
-#define bmar 2 //botom motor
-#define har 3  //horizontal
+#define verticalArrayLoc 0 //vertical
+#define topMotorArrayLoc 1 //top motor
+#define botMotorArrayLoc 2 //botom motor
+#define horzontalArrayLoc 3  //horizontal
 
 #define numoflocations 5 //number of horizontal locations
 #define END -1 //ends a horizontal sequence or a program
@@ -18,8 +18,8 @@
 #define persequence 10 //max shots per sequence
 const int places[numoflocations] = {L,ML,M,MR,R}; //locations
 
-int counter = 0; //counts the number of balls shot
-int numofballs = 0; //picks number of balls to shoot before stopping. set to 0 for continuous
+int numOfBallsShot = 0; //counts the number of balls shot
+int numOfBallsToShoot = 0; //picks number of balls to shoot before stopping. set to 0 for continuous
 int setsequence = 0; //picks the sequence from the array below
 int currentsequence[persequence] = {END,END,END,END,END,END,END,END,END,END}; //creates the sequence array for the program
 

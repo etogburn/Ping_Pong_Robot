@@ -19,11 +19,11 @@ volatile boolean ballFed = false;
 unsigned long delaytime = 0;
 unsigned long oneminute = 60000;
 
-#define hpin 9 //servo pins
-#define vpin 10
-#define tmpin 7
-#define bmpin 8
-#define feedpin 12
+#define horizontalPin 9 //servo pins
+#define verticalPin 10
+#define topMotorPin 7
+#define bottomMotorPin 8
+#define feedMotorPin 12
 
 #define RECV_PIN 13 //IR pin
 
@@ -41,8 +41,7 @@ boolean feedgo = false; //tells the feeder to start
 int freq = freqrange[0]; //frequency of the feeder
 int movementTimer = 5;
 float temp; //used to average the motor's speed
-int moveemup=90; //used for agitation
-boolean mov = true; //used for agitation direction
+
 boolean hrand = false; //random movement in manual mode
 boolean hsweep = false; //sweep of horizontal servo in random mode
 
@@ -59,7 +58,7 @@ int ballfreqbot = 0;
 int ballfreq = 9999; //ball frequency timer numbers
 boolean ffreq = true;
 
-int q = 0; //counter when complete to reset and begin a program again
+int currentShot = 0; //when complete to reset and begin a program again
 int lastShot = -1; //keeps track of the indexed number for the last shot to ensure that feedgo is turned on only once
 
 //display variables
@@ -77,14 +76,3 @@ const int programstart[2] = {0,1};
 #define selsequence 3
 int displayy = 0;
 int progrow = 0; //defines which program row is displayed and picked
-
- unsigned long now = 0;
- unsigned long lastselecshot = 0;
- unsigned long lastprog = 0;
- unsigned long lastfeed = 0;
- unsigned long lastagitate = 0;
- unsigned long lasthsweep = 0;
- unsigned long lasthrand = 0;
- unsigned long lastfeedprog = 0;
-
- unsigned long manualdisplay = 0;

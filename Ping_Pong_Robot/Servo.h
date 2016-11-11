@@ -62,7 +62,7 @@
 #if defined(ARDUINO_ARCH_AVR)
 #include "ServoTimers.h"
 #else
-#error "This library only supports boards with an AVR, SAM or SAMD processor."
+#error "This library only supports boards with an AVR processor."
 #endif
 
 #define Servo_VERSION           2     // software version of this library
